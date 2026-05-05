@@ -1,0 +1,151 @@
+#ui-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none; /* Allows 3D interaction behind the UI if needed */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: white;
+    z-index: 100
+}
+
+/* The main container for each screen */
+.hud-box {
+    pointer-events: auto; /* Re-enables clicking for the buttons */
+    position: relative;
+    background: rgba(0, 20, 30, 0.85); /* Dark semi-transparent blue */
+    border: 1px solid rgba(0, 242, 255, 0.3);
+    padding: 30px;
+    width: 320px;
+    text-align: center;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* The glowing corner accents */
+.corner-tl, .corner-br {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border: 3px solid #00f2ff;
+}
+
+.corner-tl {
+    top: -5px;
+    left: -5px;
+    border-right: none;
+    border-bottom: none;
+}
+
+.corner-br {
+    bottom: -5px;
+    right: -5px;
+    border-left: none;
+    border-top: none;
+}
+
+/* Make headers look "Railway Industrial" */
+.hud-box h1, .hud-box h2 {
+    margin: 0;
+    font-size: 1.4rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #00f2ff;
+    text-shadow: 0 0 10px rgba(0, 242, 255, 0.5);
+}
+
+#main-menu {
+    pointer-events: auto; /* Re-enables clicking for the buttons */
+    background: rgba(0, 0, 0, 0.7);
+    padding: 2rem;
+    border-radius: 15px;
+    border: 2px solid #3498db;
+    text-align: center;
+    backdrop-filter: blur(5px); /* Makes it look modern/glassy */
+}
+
+.menu-btn {
+    display: block;
+    width: 200px;
+    margin: 10px auto;
+    padding: 15px;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.1s;
+}
+
+
+
+#fault-btn { 
+    background-color: #ff4757 !important; 
+    color: white !important; 
+    border: 2px solid #b33939 !important;
+}
+
+#inventory-btn { 
+    background-color: #2ecc71 !important; 
+    color: white !important; 
+    border: 2px solid #218c74 !important;
+}
+.menu-btn:active { transform: scale(0.95); }
+
+#inventory-history {
+    margin-top: 20px;
+    max-height: 150px;
+    overflow-y: auto; /* Adds a scrollbar for many reports */
+    background: rgba(0, 0, 0, 0.3);
+    padding: 10px;
+    border: 1px solid rgba(0, 242, 255, 0.2);
+    text-align: left;
+}
+
+#inventory-history h3 {
+    font-size: 0.8rem;
+    color: #00f2ff;
+    margin-top: 0;
+}
+
+.report-card {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 5px 0;
+    font-size: 0.75rem;
+}
+
+.report-card small {
+    color: #888;
+}
+
+.primary-btn {
+    background-color: #2ecc71 !important;
+    color: white !important;
+    margin-top: 20px;
+}
+
+#ui-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* This ensures the 'pages' stack on top of each other in the code, 
+     but only one shows at a time */
+}
+
+.hud-box {
+  /* Add a simple animation so the new page 'fades in' */
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
