@@ -1,0 +1,149 @@
+/* 1. CORE RESET & LOCKDOWN */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+body, html {
+    width: 100%;
+    height: 100%;
+    overflow: hidden; /* Prevents the "scroll-past-login" exploit */
+    background-color: #1a1a1a; /* Dark industrial background */
+}
+
+/* 2. VIEW MANAGER (The "Stage") */
+.view-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: none; /* Controlled by showView() in JS */
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    background: radial-gradient(circle, #2c2c2c 0%, #1a1a1a 100%);
+}
+
+/* 3. THE UI CARDS (Login, MFA, Menu) */
+.auth-card, .menu-card {
+    background: #ffffff;
+    padding: 2rem;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+    text-align: center;
+    border-top: 5px solid #d32f2f; /* Industrial Red accent */
+    animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* 4. TYPOGRAPHY */
+h1, h2 {
+    color: #333;
+    margin-bottom: 1rem;
+    letter-spacing: -0.5px;
+}
+
+p {
+    color: #666;
+    margin-bottom: 1.5rem;
+    font-size: 0.9rem;
+}
+
+/* 5. INPUT FIELDS */
+.input-group {
+    width: 100%;
+    margin-bottom: 1rem;
+    text-align: left;
+}
+
+label {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: bold;
+    color: #888;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #eee;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: border-color 0.2s;
+}
+
+input:focus {
+    outline: none;
+    border-color: #d32f2f;
+}
+
+/* 6. BUTTONS */
+.portal-btn {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 6px;
+    background-color: #d32f2f;
+    color: white;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.portal-btn:hover {
+    background-color: #b71c1c;
+}
+
+.portal-btn:active {
+    transform: scale(0.98);
+}
+
+/* 7. MFA SPECIFIC STYLES */
+#mfa-display-code {
+    background: #f0f0f0;
+    color: #d32f2f;
+    font-family: 'Courier New', monospace;
+    font-size: 2.5rem;
+    font-weight: bold;
+    padding: 15px;
+    border-radius: 8px;
+    margin: 20px 0;
+    border: 2px dashed #ccc;
+    letter-spacing: 8px;
+}
+
+/* 8. UTILITIES */
+.error-text {
+    color: #d32f2f;
+    font-size: 0.8rem;
+    margin-top: 10px;
+    display: none; /* Shown via JS */
+}
+
+.logout-style {
+    background-color: #444 !important;
+    margin-top: 1rem;
+}
+
+/* 9. AR OVERLAY (Ensure UI stays on top) */
+#ar-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1; /* AR stays in the background */
+}
